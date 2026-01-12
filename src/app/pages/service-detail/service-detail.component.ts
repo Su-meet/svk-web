@@ -9,10 +9,10 @@ import { ServiceCardComponent } from '../../shared/components/service-card.compo
 import { Service, ServiceCategory } from '../../core/models/service.model';
 
 @Component({
-    selector: 'app-service-detail',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, ServiceCardComponent, DecimalPipe],
-    template: `
+  selector: 'app-service-detail',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink, ServiceCardComponent, DecimalPipe],
+  template: `
     <div class="service-detail-page">
       @if (service()) {
         <!-- Breadcrumb -->
@@ -148,7 +148,7 @@ import { Service, ServiceCategory } from '../../core/models/service.model';
                 <h2 class="cta-card__title">Need help choosing?</h2>
                 <p class="cta-card__text">Chat with us on WhatsApp for personalized recommendations!</p>
               </div>
-              <a href="https://wa.me/919370443220?text=Hi! I need help choosing a service" 
+              <a href="https://wa.me/918920803434?text=Hi! I need help choosing a service" 
                  target="_blank" 
                  class="cta-card__btn">
                 <span>💬</span>
@@ -172,7 +172,7 @@ import { Service, ServiceCategory } from '../../core/models/service.model';
       }
     </div>
   `,
-    styles: [`
+  styles: [`
     @use '../../../styles/variables' as *;
     @use '../../../styles/mixins' as *;
 
@@ -519,68 +519,68 @@ import { Service, ServiceCategory } from '../../core/models/service.model';
   `]
 })
 export class ServiceDetailComponent implements OnInit {
-    private route = inject(ActivatedRoute);
-    private router = inject(Router);
-    private serviceData = inject(ServiceDataService);
-    private storageService = inject(StorageService);
-    private whatsappService = inject(WhatsAppService);
-    private seo = inject(SeoService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private serviceData = inject(ServiceDataService);
+  private storageService = inject(StorageService);
+  private whatsappService = inject(WhatsAppService);
+  private seo = inject(SeoService);
 
-    service = signal<Service | undefined>(undefined);
-    category = signal<ServiceCategory | undefined>(undefined);
-    relatedServices = signal<Service[]>([]);
+  service = signal<Service | undefined>(undefined);
+  category = signal<ServiceCategory | undefined>(undefined);
+  relatedServices = signal<Service[]>([]);
 
-    readonly placeholderImage = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop';
+  readonly placeholderImage = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop';
 
-    discountPercentage = computed(() => {
-        const svc = this.service();
-        if (!svc?.discountedPrice) return 0;
-        return Math.round(((svc.price - svc.discountedPrice) / svc.price) * 100);
+  discountPercentage = computed(() => {
+    const svc = this.service();
+    if (!svc?.discountedPrice) return 0;
+    return Math.round(((svc.price - svc.discountedPrice) / svc.price) * 100);
+  });
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const slug = params['slug'];
+      if (slug) {
+        const svc = this.serviceData.getServiceBySlug(slug);
+        this.service.set(svc);
+
+        if (svc) {
+          const cat = this.serviceData.getCategoryById(svc.categoryId);
+          this.category.set(cat);
+
+          const related = this.serviceData.getRelatedServices(svc.id, 4);
+          this.relatedServices.set(related);
+
+          this.seo.setServicePage(svc.name, svc.description);
+        }
+      }
     });
+  }
 
-    ngOnInit(): void {
-        this.route.params.subscribe(params => {
-            const slug = params['slug'];
-            if (slug) {
-                const svc = this.serviceData.getServiceBySlug(slug);
-                this.service.set(svc);
+  isInCart(): boolean {
+    const svc = this.service();
+    return svc ? this.storageService.isInCart(svc.id) : false;
+  }
 
-                if (svc) {
-                    const cat = this.serviceData.getCategoryById(svc.categoryId);
-                    this.category.set(cat);
-
-                    const related = this.serviceData.getRelatedServices(svc.id, 4);
-                    this.relatedServices.set(related);
-
-                    this.seo.setServicePage(svc.name, svc.description);
-                }
-            }
-        });
+  addToCart(): void {
+    const svc = this.service();
+    if (svc) {
+      this.storageService.addToCart(svc);
     }
+  }
 
-    isInCart(): boolean {
-        const svc = this.service();
-        return svc ? this.storageService.isInCart(svc.id) : false;
+  removeFromCart(): void {
+    const svc = this.service();
+    if (svc) {
+      this.storageService.removeFromCart(svc.id);
     }
+  }
 
-    addToCart(): void {
-        const svc = this.service();
-        if (svc) {
-            this.storageService.addToCart(svc);
-        }
+  bookNow(): void {
+    const svc = this.service();
+    if (svc) {
+      this.whatsappService.inquireAboutService(svc);
     }
-
-    removeFromCart(): void {
-        const svc = this.service();
-        if (svc) {
-            this.storageService.removeFromCart(svc.id);
-        }
-    }
-
-    bookNow(): void {
-        const svc = this.service();
-        if (svc) {
-            this.whatsappService.inquireAboutService(svc);
-        }
-    }
+  }
 }

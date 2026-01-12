@@ -2,10 +2,10 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-footer',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink],
-    template: `
+  selector: 'app-footer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink],
+  template: `
     <footer class="footer">
       <!-- Cities Section -->
       <section class="footer__cities">
@@ -52,7 +52,7 @@ import { RouterLink } from '@angular/router';
                 <a href="https://youtube.com/svkexperts" target="_blank" class="footer__social-link" aria-label="YouTube">
                   <span>▶️</span>
                 </a>
-                <a href="https://wa.me/919370443220" target="_blank" class="footer__social-link" aria-label="WhatsApp">
+                <a href="https://wa.me/918920803434" target="_blank" class="footer__social-link" aria-label="WhatsApp">
                   <span>💬</span>
                 </a>
               </div>
@@ -85,7 +85,7 @@ import { RouterLink } from '@angular/router';
               <h4 class="footer__section-title">For Professionals</h4>
               <ul class="footer__links">
                 <li>
-                  <a href="https://wa.me/919370443220?text=Hi! I want to join as a Service Partner" target="_blank">
+                  <a href="https://wa.me/918920803434?text=Hi! I want to join as a Service Partner" target="_blank">
                     Join as Service Partner
                   </a>
                 </li>
@@ -126,7 +126,7 @@ import { RouterLink } from '@angular/router';
       </div>
     </footer>
   `,
-    styles: [`
+  styles: [`
     @use '../../../styles/variables' as *;
     @use '../../../styles/mixins' as *;
 
@@ -318,5 +318,5 @@ import { RouterLink } from '@angular/router';
   `]
 })
 export class FooterComponent {
-    currentYear = new Date().getFullYear();
+  currentYear = new Date().getFullYear();
 }

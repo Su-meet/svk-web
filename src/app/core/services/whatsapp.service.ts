@@ -10,7 +10,7 @@ export class WhatsAppService {
     private platformId = inject(PLATFORM_ID);
     private storageService = inject(StorageService);
 
-    readonly businessNumber = '919370443220';
+    readonly businessNumber = '918920803434';
     readonly businessName = 'SVK Experts';
 
     generateBookingMessage(

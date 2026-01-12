@@ -3,10 +3,10 @@ import { RouterLink } from '@angular/router';
 import { StorageService } from '../../core/services/storage.service';
 
 @Component({
-    selector: 'app-header',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink],
-    template: `
+  selector: 'app-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink],
+  template: `
     <header class="header" [class.scrolled]="isScrolled()">
       <div class="header__container">
         <!-- Logo -->
@@ -37,7 +37,7 @@ import { StorageService } from '../../core/services/storage.service';
             <span>Use Current Location</span>
           </a>
           
-          <a href="https://wa.me/919370443220?text=Hi! I want to join as a Service Partner" 
+          <a href="https://wa.me/918920803434?text=Hi! I want to join as a Service Partner" 
              target="_blank" 
              class="header__nav-link header__nav-link--partner">
             <span class="header__nav-icon">🤝</span>
@@ -68,7 +68,7 @@ import { StorageService } from '../../core/services/storage.service';
               <span class="badge">({{ cartCount() }})</span>
             }
           </a>
-          <a href="https://wa.me/919370443220?text=Hi! I want to join as a Service Partner" 
+          <a href="https://wa.me/918920803434?text=Hi! I want to join as a Service Partner" 
              target="_blank" 
              class="header__mobile-link">
             Join as Partner
@@ -77,7 +77,7 @@ import { StorageService } from '../../core/services/storage.service';
       }
     </header>
   `,
-    styles: [`
+  styles: [`
     @use '../../../styles/variables' as *;
     @use '../../../styles/mixins' as *;
 
@@ -308,26 +308,26 @@ import { StorageService } from '../../core/services/storage.service';
   `]
 })
 export class HeaderComponent {
-    private storageService = inject(StorageService);
+  private storageService = inject(StorageService);
 
-    cartCount = this.storageService.cartCount;
-    isScrolled = signal(false);
-    isMobileMenuOpen = signal(false);
+  cartCount = this.storageService.cartCount;
+  isScrolled = signal(false);
+  isMobileMenuOpen = signal(false);
 
-    toggleMobileMenu(): void {
-        this.isMobileMenuOpen.update(v => !v);
-    }
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen.update(v => !v);
+  }
 
-    closeMobileMenu(): void {
-        this.isMobileMenuOpen.set(false);
-    }
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen.set(false);
+  }
 
-    onSearchFocus(): void {
-        // Could open search modal or navigate to search page
-    }
+  onSearchFocus(): void {
+    // Could open search modal or navigate to search page
+  }
 
-    onSearchInput(event: Event): void {
-        const value = (event.target as HTMLInputElement).value;
-        // Handle search
-    }
+  onSearchInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    // Handle search
+  }
 }
