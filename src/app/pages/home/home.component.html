@@ -1,0 +1,229 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero__container">
+    <div class="hero__content">
+      <h1 class="hero__title">
+        Home service experts at your
+        <span class="hero__title-accent">doorstep</span>
+      </h1>
+      <p class="hero__subtitle">
+        Book trusted professionals for all your home needs - AC repair, beauty services,
+        cleaning, electrician, plumber and more.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="hero__search">
+        <span class="hero__search-icon">🔍</span>
+        <input type="text" placeholder="Search for AC repair, salon, cleaning..." class="hero__search-input"
+          [(value)]="searchQuery" (input)="onSearch($event)" />
+        <button class="hero__search-btn">Search</button>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-value">4.8 ⭐</span>
+          <span class="hero__stat-label">Service Rating</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">{{ statistics.happyCustomers }}</span>
+          <span class="hero__stat-label">Happy Customers</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">{{ statistics.experiencedExperts }}</span>
+          <span class="hero__stat-label">Experienced Experts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Image/Animation Side -->
+    <div class="hero__visual">
+      <div class="hero__visual-grid">
+        <div class="hero__visual-item hero__visual-item--1">
+          <span>🔧</span>
+          <span>Repairs</span>
+        </div>
+        <div class="hero__visual-item hero__visual-item--2">
+          <span>💆‍♀️</span>
+          <span>Spa</span>
+        </div>
+        <div class="hero__visual-item hero__visual-item--3">
+          <span>🧹</span>
+          <span>Cleaning</span>
+        </div>
+        <div class="hero__visual-item hero__visual-item--4">
+          <span>❄️</span>
+          <span>AC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="section section--categories">
+  <div class="container">
+    <div class="section__header">
+      <h2 class="section__title">What are you looking for?</h2>
+      <p class="section__subtitle">Browse our wide range of professional home services</p>
+    </div>
+
+    <div class="categories-grid">
+      @for (category of categories(); track category.id) {
+      <app-category-card [category]="category" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Top Booked Services -->
+<section class="section section--services">
+  <div class="container">
+    <div class="section__header">
+      <div>
+        <h2 class="section__title">Top Most Booked Services</h2>
+        <p class="section__subtitle">Popular services loved by our customers</p>
+      </div>
+      <a routerLink="/services" class="section__link">
+        View All Services →
+      </a>
+    </div>
+
+    <div class="services-grid">
+      @for (service of topServices().slice(0, 8); track service.id) {
+      <app-service-card [service]="service" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Featured Categories -->
+<section class="section section--featured">
+  <div class="container">
+    <!-- Beauty & Grooming -->
+    <div class="featured-category">
+      <div class="featured-category__header">
+        <div class="featured-category__icon" style="background: #ec489915">💆‍♀️</div>
+        <h3 class="featured-category__title">Beauty, Grooming & Wellness</h3>
+      </div>
+      <div class="featured-category__tags">
+        <a routerLink="/services/womens-beauty-spa" class="featured-category__tag">Women's Salon</a>
+        <a routerLink="/services/womens-beauty-spa" class="featured-category__tag">Spa</a>
+        <a routerLink="/services/womens-beauty-spa" class="featured-category__tag">Bridal & Party Makeup</a>
+        <a routerLink="/services/mens-grooming" class="featured-category__tag">Men's Haircut</a>
+        <a routerLink="/services/mens-grooming" class="featured-category__tag">Beard Grooming & Styling</a>
+      </div>
+    </div>
+
+    <!-- AC & Appliance -->
+    <div class="featured-category">
+      <div class="featured-category__header">
+        <div class="featured-category__icon" style="background: #0ea5e915">❄️</div>
+        <h3 class="featured-category__title">AC Repair & Appliance Services</h3>
+      </div>
+      <div class="featured-category__tags">
+        <a routerLink="/services/ac-appliance-electronics" class="featured-category__tag">AC</a>
+        <a routerLink="/services/ac-appliance-electronics" class="featured-category__tag">Washing Machine</a>
+        <a routerLink="/services/ac-appliance-electronics" class="featured-category__tag">Refrigerator / Fridge</a>
+        <a routerLink="/services/ac-appliance-electronics" class="featured-category__tag">Air Cooler</a>
+        <a routerLink="/services/ac-appliance-electronics" class="featured-category__tag">RO / Water Purifier</a>
+      </div>
+    </div>
+
+    <!-- Home Cleaning -->
+    <div class="featured-category">
+      <div class="featured-category__header">
+        <div class="featured-category__icon" style="background: #22c55e15">🧹</div>
+        <h3 class="featured-category__title">Home Cleaning & Hygiene</h3>
+      </div>
+      <div class="featured-category__tags">
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Full Home Deep
+          Cleaning</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Bathroom Cleaning</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Kitchen Cleaning</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Sofa Cleaning</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Carpet Cleaning</a>
+      </div>
+    </div>
+
+    <!-- Electrician -->
+    <div class="featured-category">
+      <div class="featured-category__header">
+        <div class="featured-category__icon" style="background: #f59e0b15">⚡</div>
+        <h3 class="featured-category__title">Electrician</h3>
+      </div>
+      <div class="featured-category__tags">
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Switch Repair</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Fan Installation</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Wiring Work</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Light Installation</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Inverter / UPS Repair</a>
+      </div>
+    </div>
+
+    <!-- Plumber -->
+    <div class="featured-category">
+      <div class="featured-category__header">
+        <div class="featured-category__icon" style="background: #3b82f615">🔧</div>
+        <h3 class="featured-category__title">Plumber</h3>
+      </div>
+      <div class="featured-category__tags">
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Tap Repair</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Flush Repair</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Pipe Leakage Fix</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Drainage Blockage
+          Removal</a>
+        <a routerLink="/services/electrician-plumber-cleaning" class="featured-category__tag">Tile Grouting</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section section--why-us">
+  <div class="container">
+    <div class="section__header section__header--center">
+      <h2 class="section__title">Why Choose SVK Experts?</h2>
+      <p class="section__subtitle">We're committed to providing the best service experience</p>
+    </div>
+
+    <div class="why-us-grid">
+      <div class="why-us-card">
+        <div class="why-us-card__icon">✅</div>
+        <h3 class="why-us-card__title">Verified Professionals</h3>
+        <p class="why-us-card__text">All our service partners are thoroughly verified and trained</p>
+      </div>
+      <div class="why-us-card">
+        <div class="why-us-card__icon">💰</div>
+        <h3 class="why-us-card__title">Transparent Pricing</h3>
+        <p class="why-us-card__text">No hidden charges. See final price before booking</p>
+      </div>
+      <div class="why-us-card">
+        <div class="why-us-card__icon">🛡️</div>
+        <h3 class="why-us-card__title">Service Warranty</h3>
+        <p class="why-us-card__text">Up to 30-day warranty on all services</p>
+      </div>
+      <div class="why-us-card">
+        <div class="why-us-card__icon">⚡</div>
+        <h3 class="why-us-card__title">Quick Response</h3>
+        <p class="why-us-card__text">Book now and get service at your preferred time</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section section--cta">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-card__content">
+        <h2 class="cta-card__title">Ready to book a service?</h2>
+        <p class="cta-card__text">Get expert help at your doorstep. Book now via WhatsApp!</p>
+      </div>
+      <a href="https://wa.me/919370443220?text=Hi! I want to book a service" target="_blank" class="cta-card__btn">
+        <span>💬</span>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

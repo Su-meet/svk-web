@@ -1,0 +1,456 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// Hero Section
+.hero {
+  padding: 100px 0 $spacing-16;
+  background: linear-gradient(135deg, $primary-50 0%, white 50%, $accent-50 100%);
+  overflow: hidden;
+
+  &__container {
+    @include container;
+    display: grid;
+    gap: $spacing-12;
+    align-items: center;
+
+    @include lg {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__content {
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    @include lg {
+      text-align: left;
+    }
+  }
+
+  &__title {
+    @include heading-xl;
+    margin-bottom: $spacing-6;
+    color: $neutral-900;
+
+    &-accent {
+      color: $primary-600;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        background: $accent-300;
+        opacity: 0.5;
+        z-index: -1;
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $neutral-600;
+    margin-bottom: $spacing-8;
+    max-width: 500px;
+
+    @include lg {
+      margin-bottom: $spacing-10;
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    padding: $spacing-2;
+    padding-left: $spacing-4;
+    background: white;
+    border-radius: $radius-full;
+    box-shadow: $shadow-lg;
+    max-width: 500px;
+    margin: 0 auto $spacing-10;
+
+    @include lg {
+      margin: 0 0 $spacing-10;
+    }
+
+    &-icon {
+      font-size: 1.25rem;
+      opacity: 0.5;
+    }
+
+    &-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: $font-size-base;
+      outline: none;
+      min-width: 0;
+
+      &::placeholder {
+        color: $neutral-400;
+      }
+    }
+
+    &-btn {
+      padding: $spacing-3 $spacing-6;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: white;
+      background: $primary-600;
+      border: none;
+      border-radius: $radius-full;
+      cursor: pointer;
+      transition: all $transition-fast;
+      white-space: nowrap;
+
+      &:hover {
+        background: $primary-700;
+      }
+    }
+  }
+
+  &__stats {
+    display: flex;
+    gap: $spacing-8;
+    justify-content: center;
+
+    @include lg {
+      justify-content: flex-start;
+    }
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include lg {
+      align-items: flex-start;
+    }
+
+    &-value {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $neutral-900;
+    }
+
+    &-label {
+      font-size: $font-size-xs;
+      color: $neutral-500;
+    }
+  }
+
+  &__visual {
+    display: none;
+
+    @include lg {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__visual-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-4;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  &__visual-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    padding: $spacing-6;
+    background: white;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-md;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $neutral-700;
+
+    span:first-child {
+      font-size: 2rem;
+    }
+
+    &--1 {
+      animation-delay: 0s;
+    }
+    &--2 {
+      animation-delay: 0.5s;
+    }
+    &--3 {
+      animation-delay: 1s;
+    }
+    &--4 {
+      animation-delay: 1.5s;
+    }
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// Section Styles
+.section {
+  @include section;
+
+  &--categories {
+    background: white;
+  }
+
+  &--services {
+    background: $neutral-50;
+  }
+
+  &--featured {
+    background: white;
+  }
+
+  &--why-us {
+    background: $neutral-50;
+  }
+
+  &--cta {
+    background: white;
+  }
+
+  &__header {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-4;
+    margin-bottom: $spacing-8;
+
+    &--center {
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    @include heading-lg;
+    margin-bottom: $spacing-2;
+  }
+
+  &__subtitle {
+    font-size: $font-size-base;
+    color: $neutral-500;
+    margin: 0;
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $primary-600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Categories Grid
+.categories-grid {
+  display: grid;
+  gap: $spacing-4;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include sm {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include xl {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+// Services Grid
+.services-grid {
+  display: grid;
+  gap: $spacing-6;
+  grid-template-columns: 1fr;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include xl {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Featured Category
+.featured-category {
+  padding: $spacing-6;
+  background: $neutral-50;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-6;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    margin-bottom: $spacing-4;
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border-radius: $radius-lg;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $neutral-900;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+  }
+
+  &__tag {
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-sm;
+    color: $neutral-700;
+    background: white;
+    border: 1px solid $neutral-200;
+    border-radius: $radius-full;
+    text-decoration: none;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: $primary-50;
+      border-color: $primary-300;
+      color: $primary-700;
+    }
+  }
+}
+
+// Why Us Grid
+.why-us-grid {
+  display: grid;
+  gap: $spacing-6;
+  grid-template-columns: 1fr;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.why-us-card {
+  text-align: center;
+  padding: $spacing-8 $spacing-6;
+  background: white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-sm;
+
+  &__icon {
+    font-size: 2.5rem;
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $neutral-900;
+    margin-bottom: $spacing-2;
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    color: $neutral-500;
+    margin: 0;
+  }
+}
+
+// CTA Card
+.cta-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-6;
+  padding: $spacing-10 $spacing-6;
+  text-align: center;
+  background: linear-gradient(135deg, $primary-600 0%, $primary-800 100%);
+  border-radius: $radius-2xl;
+
+  @include md {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    padding: $spacing-10 $spacing-12;
+  }
+
+  &__content {
+    color: white;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-2;
+  }
+
+  &__text {
+    font-size: $font-size-base;
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-4 $spacing-8;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $primary-700;
+    background: white;
+    border-radius: $radius-full;
+    text-decoration: none;
+    transition: all $transition-fast;
+    white-space: nowrap;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: $shadow-lg;
+    }
+  }
+}
